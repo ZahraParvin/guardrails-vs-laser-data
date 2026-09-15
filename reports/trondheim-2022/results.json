@@ -1,0 +1,56 @@
+{
+  "study": "FV6650, Trondheim",
+  "registered_objects": 26,
+  "registered_length_m": 1022.1410554772552,
+  "laser_project": "NDH Trondheim 30pkt 2022",
+  "laser_project_id": 5765,
+  "laser_flight_dates": [
+    "2022-07-29",
+    "2022-07-30"
+  ],
+  "nominal_density_points_m2": 30,
+  "laser_download_points": 6753709,
+  "analysis_points": 3761844,
+  "flags": {
+    "gaps": 1,
+    "gap_length_m": 7.0,
+    "candidates": 16
+  },
+  "review": {
+    "confirmed": 0,
+    "rejected_candidates": 12,
+    "rejected_gaps": 1,
+    "uncertain_candidates": 4,
+    "uncertain_gaps": 0,
+    "type": "AI-assisted multi-source screening review, not field validation",
+    "recall": "Not measured: no independently labelled sample of supported/unflagged locations"
+  },
+  "performance": {
+    "wall_seconds": 6.388483000002452,
+    "peak_process_rss_mb": 618.84375,
+    "scope": "Full local pipeline: LAZ crop, ground, support, DBSCAN, exports, figure. Excludes imports and network download.",
+    "measurement": "Process RSS sampled every 50 ms, not a hard upper bound"
+  },
+  "settings": {
+    "buffer": 15.0,
+    "chunk_size": 1000000,
+    "band_lo": 0.3,
+    "band_hi": 1.5,
+    "radius": 1.5,
+    "min_points": 5,
+    "step": 1.0,
+    "min_gap": 5.0,
+    "max_ground_distance": 5.0,
+    "cell": 2.0,
+    "min_distance": 5.0,
+    "cluster_eps": 1.5,
+    "cluster_min_samples": 40,
+    "min_candidate_length": 8.0,
+    "min_elongation": 4.0,
+    "max_analysis_points": 5000000,
+    "max_cluster_points": 200000
+  },
+  "source_format": "public Potree 1.7 LAZ derivative, all intersecting hierarchy levels",
+  "source_url": "https://hoydedata.no/Potree_vol14/5765/6319cbe1-11b8-4057-8e02-8d9537881c48",
+  "caveat": "All linked intersecting viewer nodes downloaded, but original survey export not independently compared; no confirmed NVDB discrepancies."
+}
