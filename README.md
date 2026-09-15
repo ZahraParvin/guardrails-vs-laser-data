@@ -19,6 +19,16 @@ Oppfølgingen avklarte seks av de ti tidligere usikre flaggene med middels sikke
 
 En deterministisk **syntetisk demo** følger også med: ett flagg på 18 m og én kandidat. Demoresultatene skal ikke blandes med det virkelige forsøket. Teststatus: 14 tester bestått.
 
+### Oversiktskart
+
+![Oversikt over registrerte rekkverk og analyseflagg på FV6650 i Trondheim](reports/trondheim-2022/overview.png)
+
+### Laserprofil for G01
+
+![Laserprofil for det sju meter lange intervallet uten tilstrekkelig laserstøtte](reports/trondheim-2022/gap_diagnostic.png)
+
+G01 manglet tilstrekkelig laserstøtte, men et datert vegbilde viste rekkverket. Flagget er derfor avvist som manglende rekkverk i screening.
+
 ## Kjøring
 
 Python 3.11 eller nyere. Fra prosjektmappen på Windows:
@@ -105,7 +115,7 @@ Bildegjennomgang og oppfølging er utført for Trondheim-forsøket; tersklene er
 - `tests/`: regresjonstester for datapipeline og datainnhenting.
 - `reports/trondheim-2022/`: rapporter, vurderinger, kildemanifest, kart og utvalgt evidens som kan deles.
 
-`.gitignore` utelater rådata i `data/`, kjøringsresultater og lokale flyfoto i `outputs/`, Python-miljøer, midlertidige filer, lokale hemmeligheter og personlige søknadsdokumenter. Rapportmappen beholdes slik at resultatene kan leses uten å laste ned punktskyen. Ignoreringsregler fjerner ikke filer som allerede er sporet av Git.
+Rapportmappen beholdes slik at resultatene kan leses uten å laste ned punktskyen. Rådata i `data/`, kjøringsresultater og lokale flyfoto i `outputs/`, Python-miljøer, midlertidige filer, lokale hemmeligheter og personlige søknadsdokumenter holdes utenfor Git. Ignoreringsreglene ligger i en lokal `.gitignore` som ikke følger med ved kloning; opprett egne lokale regler før du legger til genererte filer. Ignoreringsregler fjerner ikke filer som allerede er sporet av Git.
 
 ## Hva måtte endres i full skala?
 
