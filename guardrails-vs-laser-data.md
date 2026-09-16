@@ -12,7 +12,7 @@ and that is the point.
 
 | | |
 |---|---|
-| Road object type | 5 — Rekkverk |
+| Road object type | 5 — Guardrail (NVDB: Rekkverk) |
 | Coordinate system | EPSG:25833 |
 | Point format | LAZ 1.2–1.4 |
 | Time budget | ≈ 14 hours |
@@ -39,7 +39,7 @@ coordinate systems. Decide now and hold to it.
 ### Find a stretch worth looking at
 
 Open **vegkart.no**, which is Statens vegvesen's own map view of NVDB. Search for an
-area, pick the object type *Rekkverk* in the left menu, and see where guardrail is
+area, pick the *Guardrail* object type (labelled *Rekkverk*) in the left menu, and see where guardrail is
 actually dense.
 
 - **Choose a fjord or mountain road, not a city street.** You want several hundred
@@ -145,7 +145,7 @@ HEAD = {"Accept": "application/json", "X-Client": "zahra-guardrail-demo"}
 BBOX = "269000,7040000,271000,7042000"   # minx,miny,maxx,maxy in EPSG:25833
 
 def fetch_guardrails(bbox):
-    url = f"{BASE}/vegobjekter/5"               # 5 = Rekkverk
+    url = f"{BASE}/vegobjekter/5"               # 5 = Guardrail
     params = {
         "kartutsnitt":  bbox,
         "srid":         25833,
@@ -237,15 +237,15 @@ handful of returns per metre of barrier; at 10 pts/m² you get enough that it ha
 ### Through the portal
 
 1. Go to **hoydedata.no/LaserInnsyn2**.
-2. Search for the place under *Søk* — place name, address or coordinates.
+2. Use *Search* (labelled *Søk*) to find a place name, address or coordinates.
 3. See which projects cover the area, and note name, year and density. You want them in
    the README.
-4. Open the export menu. Choose product **Punktsky** (point cloud) — not DTM or DOM,
+4. Open the export menu. Choose **Point cloud** (labelled *Punktsky*) — not DTM or DOM,
    which are already rasterised and have thrown away exactly the points you're after.
-5. Draw the area, or use *Gjeldende kartutsnitt* (current map view). Cover the bbox from
+5. Draw the area, or use *Current map view* (labelled *Gjeldende kartutsnitt*). Cover the bbox from
    step 0, ideally a little generously.
 6. Choose coordinate system **UTM33**, so it matches the NVDB extract.
-7. *Klargjør eksport* (prepare export), and wait.
+7. Select *Prepare export* (labelled *Klargjør eksport*), and wait.
 
 > **Setting expectations**
 > Expect a few hundred megabytes and tens of millions of points for 2 × 2 km at high
@@ -636,44 +636,44 @@ from coursework. The repo shows you can do it on their data.
 ### README skeleton
 
 ```markdown
-# Rekkverk: NVDB mot laserdata
+# Guardrails: NVDB vs laser data
 
-Hvor godt stemmer rekkverk registrert i Nasjonal vegdatabank med det
-laserdataene faktisk viser?
+How well do guardrails registered in the National Road Database match
+what the laser data actually shows?
 
-## Spørsmålet
-[2-3 setninger.]
+## The question
+[2-3 sentences.]
 
 ## Data
-- Rekkverk fra NVDB API, vegobjekttype 5 — [lisens + attribusjon]
-- Punktsky fra Kartverkets nasjonale detaljerte høydemodell,
-  [prosjektnavn, år, punkttetthet] — [lisens + attribusjon]
-- Strekning: [vegnummer, kommune], ca. [N] km, EPSG:25833
+- Guardrails from the NVDB API, road object type 5 — [licence + attribution]
+- Point cloud from Kartverket's national detailed elevation model,
+  [project name, year, point density] — [licence + attribution]
+- Road section: [road number, municipality], approx. [N] km, EPSG:25833
 
-## Metode
-[De fem trinnene, ett kulepunkt hver.]
+## Method
+[The five steps, one bullet point each.]
 
-## Resultat
-[Ett tall. Antall flaggede strekninger og samlet lengde. Antall kandidater.
-overview.png. 3-4 utsnitt av de mest interessante avvikene.]
+## Results
+[One headline number. Number of flagged sections and their total length. Candidate count.
+overview.png. 3-4 close-up views of the most interesting discrepancies.]
 
-## Kalibrering og feilkilder
-[Hvilke parametre du justerte og mot hva. Hvor mange falske positive.]
+## Calibration and sources of error
+[Which parameters you adjusted and against what reference. Number of false positives.]
 
-## Hva som måtte endres i full skala
-[Flislegging drevet av vegnettet. Lineær vegreferanse som nøkkel.
-Ferdig DTM i stedet for eget bakkeestimat.]
+## What would change at full scale
+[Tiling driven by the road network. Linear road references as the key.
+An existing DTM instead of a custom ground estimate.]
 
-## Kjøring
-[Tre kommandoer.]
+## Running the project
+[Three commands.]
 ```
 
 ---
 
 ## Sources
 
-- NVDB vegobjekttyper — https://api.vegdata.no/endepunkt/vegobjekttyper.html
-- NVDB vegobjekter — https://api.vegdata.no/endepunkt/vegobjekter.html
+- NVDB road object types — https://api.vegdata.no/endepunkt/vegobjekttyper.html
+- NVDB road objects — https://api.vegdata.no/endepunkt/vegobjekter.html
 - NVDB API Les V4 — https://nvdb-docs.atlas.vegvesen.no/nvdbapil/v4/introduksjon/Oversikt/
 - Kartverket elevation data — https://www.kartverket.no/en/api-and-data/terrengdata
 - vegkart.no — https://vegkart.no

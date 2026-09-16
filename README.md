@@ -1,37 +1,37 @@
-# Rekkverk: NVDB mot laserdata
+# Guardrails: NVDB vs laser data
 
-Et lite Python-prosjekt som sammenligner registrerte rekkverkslinjer med laserpunkter i rekkverkshøyde. Resultatene er kandidater for kontroll, ikke bevis på feil i NVDB.
+A small Python project comparing registered guardrail lines with laser points at guardrail height. Results are candidates for review, not proof of errors in NVDB.
 
-## Status og resultat
+## Status and results
 
-**Virkelig forsøk utført på FV6650 i Trondheim:** 26 rekkverksobjekter, 1 022 m registrert geometri og 3,76 millioner analyserte laserpunkter fra NDH Trondheim 30pkt 2022. Resultat: ett ustøttet intervall på 7 m og 16 kandidater. Etter kontroll mot vegbilder fra 2022, laserprofiler og vårflyfoto fra 2024/2026 er 12 kandidater og intervallet avvist i screening. Fire kandidater er fortsatt usikre. **Ingen NVDB-avvik er bekreftet.** Se [oppfølging og dokumentasjon](reports/trondheim-2022/FOLLOWUP.md). Vurderingene er ikke feltverifiserte.
+**Real-data study completed on FV6650 in Trondheim:** 26 guardrail objects, 1,022 m of registered geometry and 3.76 million analysed laser points from NDH Trondheim 30pkt 2022. The analysis produced one unsupported 7 m interval and 16 candidates. After review against 2022 road photographs, laser profiles and spring aerial imagery from 2024/2026, 12 candidates and the interval were rejected during screening. Four candidates remain uncertain. **No NVDB discrepancies are confirmed.** See the [follow-up and evidence](reports/trondheim-2022/FOLLOWUP.md). The assessments have not been verified in the field.
 
-Se [rapport med datakilder og følsomhetsanalyse](reports/trondheim-2022/REPORT.md), [kart](reports/trondheim-2022/overview.png) og [vurderingstabell](reports/trondheim-2022/review.csv). Dette er AI-assistert bildegjennomgang, ikke uavhengig feltvalidering. Kartverkets visningsdatasett er heller ikke sammenlignet med original LAZ-leveranse.
+See the [report with data sources and sensitivity analysis](reports/trondheim-2022/REPORT.md), [map](reports/trondheim-2022/overview.png) and [review table](reports/trondheim-2022/review.csv). This is AI-assisted imagery review, not independent field validation. Kartverket's viewer dataset has also not been compared with the original LAZ delivery.
 
-| Gjennomgang av 17 flagg | Resultat |
+| Review of 17 flags | Result |
 |---|---:|
-| Kandidater avvist i screening | 12 |
-| Ustøttet intervall avvist som manglende rekkverk | 1 |
-| Usikre kandidater | 4 |
-| Bekreftede NVDB-avvik | 0 |
+| Candidates rejected during screening | 12 |
+| Unsupported intervals rejected as missing guardrails | 1 |
+| Uncertain candidates | 4 |
+| Confirmed NVDB discrepancies | 0 |
 
-Oppfølgingen avklarte seks av de ti tidligere usikre flaggene med middels sikkerhet: G01 viser et eksisterende rekkverk i vegbildet, mens C02, C04, C08, C10 og C16 vurderes som vegetasjon/terreng. **C03, C05, C07 og C11 gjenstår** i [kontrollisten](reports/trondheim-2022/field_checks.csv). Senere flyfoto er støttegrunnlag, ikke fasit for tilstanden i 2022. [Kildemanifestet](reports/trondheim-2022/evidence_manifest.json) dokumenterer bilder, datoer og filhashverdier; [første vurdering](reports/trondheim-2022/review_first_pass.csv) er bevart.
+The follow-up resolved six of the ten previously uncertain flags with medium confidence: G01 shows an existing guardrail in the road photograph, while C02, C04, C08, C10 and C16 were assessed as vegetation/terrain. **C03, C05, C07 and C11 remain open** in the [field-check list](reports/trondheim-2022/field_checks.csv). Later aerial imagery provides supporting evidence, not ground truth for conditions in 2022. The [evidence manifest](reports/trondheim-2022/evidence_manifest.json) records images, dates and file hashes; the [first-pass review](reports/trondheim-2022/review_first_pass.csv) is preserved.
 
-En deterministisk **syntetisk demo** følger også med: ett flagg på 18 m og én kandidat. Demoresultatene skal ikke blandes med det virkelige forsøket. Teststatus: 14 tester bestått.
+A deterministic **synthetic demo** is also included: one 18 m flag and one candidate. Demo results must be kept separate from the real-data study. Test status: 14 tests passed.
 
-### Oversiktskart
+### Overview map
 
-![Oversikt over registrerte rekkverk og analyseflagg på FV6650 i Trondheim](reports/trondheim-2022/overview.png)
+![Overview of registered guardrails and analysis flags on FV6650 in Trondheim](reports/trondheim-2022/overview.png)
 
-### Laserprofil for G01
+### Laser profile for G01
 
-![Laserprofil for det sju meter lange intervallet uten tilstrekkelig laserstøtte](reports/trondheim-2022/gap_diagnostic.png)
+![Laser profile for the seven-metre interval with insufficient laser support](reports/trondheim-2022/gap_diagnostic.png)
 
-G01 manglet tilstrekkelig laserstøtte, men et datert vegbilde viste rekkverket. Flagget er derfor avvist som manglende rekkverk i screening.
+G01 lacked sufficient laser support, but a dated road photograph showed the guardrail. The flag was therefore rejected as a missing guardrail during screening.
 
-## Kjøring
+## Running the project
 
-Python 3.11 eller nyere. Fra prosjektmappen på Windows:
+Python 3.11 or newer. From the project directory on Windows:
 
 ```powershell
 python -m venv .venv
@@ -39,13 +39,13 @@ python -m venv .venv
 .\.venv\Scripts\python -m guardrails demo
 ```
 
-På Linux/macOS brukes `.venv/bin/python` i stedet. Tester: `python -m pytest` med prosjektmiljøet aktivert.
+On Linux/macOS, use `.venv/bin/python` instead. Run tests with `python -m pytest` after activating the project environment.
 
-Se `outputs/demo/overview.png` og `outputs/demo/summary.json` etter kjøring.
+After running, see `outputs/demo/overview.png` and `outputs/demo/summary.json`.
 
-## Gjenta Trondheim-forsøket
+## Reproduce the Trondheim study
 
-Bruk prosjektmiljøets Python i kommandoene nedenfor, for eksempel `.\.venv\Scripts\python` på Windows. Nedlasting krever nettverkstilgang. Skriptene mellomlagrer rådata lokalt.
+Use the project environment's Python for the commands below, for example `.\.venv\Scripts\python` on Windows. Downloads require network access. The scripts cache raw data locally.
 
 ```powershell
 python -m guardrails fetch --bbox "269000,7040000,271000,7042000" --output data/nvdb
@@ -57,17 +57,17 @@ python scripts/review_study.py outputs/real
 python scripts/report_study.py
 ```
 
-Studien bruker **NDH Trondheim 30pkt 2022**, prosjekt 5765, med flyging 29.–30. juli 2022. Skriptet laster ned alle lenkede, overlappende hierarkinivåer fra Kartverkets Potree-visningsdatasett og transformerer XY fra UTM32 til UTM33. NVDB-uttrekket fra september 2026 inneholdt 84 objekter; studieutvalget omfatter 26 på FV6650. Alle 48 nærliggende rekkverksobjekter brukes som referanse ved kandidatsøket.
+The study uses **NDH Trondheim 30pkt 2022**, project 5765, flown on 29–30 July 2022. The script downloads all linked, overlapping hierarchy levels from Kartverket's Potree viewer dataset and transforms XY from UTM32 to UTM33. The September 2026 NVDB extract contained 84 objects; the study subset includes 26 on FV6650. All 48 nearby guardrail objects serve as references for the candidate search.
 
-Den lokale analyseprosessen tok **6,39 sekunder**, med målt toppminne **618,8 MiB**. Nettverksnedlasting og importer er ikke med i målingen. Se [rapporten](reports/trondheim-2022/REPORT.md) for datakvalitet, kildeavvik og målemetode, og [oppfølgingen](reports/trondheim-2022/FOLLOWUP.md#reproduce-this-follow-up) for kommandoene som henter vegbilder og vårflyfoto og pakker evidensen.
+The local analysis took **6.39 seconds**, with measured peak memory of **618.8 MiB**. Network downloads and imports are excluded from this measurement. See the [report](reports/trondheim-2022/REPORT.md) for data quality, source discrepancies and measurement details, and the [follow-up](reports/trondheim-2022/FOLLOWUP.md#reproduce-this-follow-up) for commands to retrieve road photographs and spring aerial imagery and package the evidence.
 
-Nye NVDB-uttrekk kan endre resultatene. `report_study.py` gjengir dokumenterte vurderinger og kontrollerer geometrienes hashverdier; skriptet utfører ikke automatisk visuell validering. Endret datagrunnlag må vurderes på nytt før etikettene gjenbrukes.
+New NVDB extracts may change the results. `report_study.py` reproduces documented assessments and checks geometry hashes; it does not perform automated visual validation. Changed source data must be reviewed again before reusing the labels.
 
-## Analyser et annet område
+## Analyse another area
 
-1. Velg omtrent 2 × 2 km med rekkverk i [Vegkart](https://vegkart.no). Kontroller dekning, opptaksår og tetthet på [Høydedata](https://hoydedata.no/LaserInnsyn2). Velg punktsky, LAS/LAZ og UTM33; last ned til `data/tile.laz`.
-2. Noter faktisk vegnummer, kommune, bbox, laserprosjekt, år, punkttetthet, nedlastingsdato og produktvilkår i en lokal proveniensfil.
-3. Hent rekkverk og kjør analysen. Erstatt Trondheim-bboxen nedenfor med ditt område, og bruk en egen resultatmappe:
+1. Select roughly 2 × 2 km containing guardrails in [Vegkart](https://vegkart.no). Check coverage, acquisition year and density on [Høydedata](https://hoydedata.no/LaserInnsyn2). Select point cloud, LAS/LAZ and UTM33; download to `data/tile.laz`.
+2. Record the actual road number, municipality, bbox, laser project, year, point density, download date and product terms in a local provenance file.
+3. Fetch guardrails and run the analysis. Replace the Trondheim bbox below with your area and use a separate output directory:
 
 ```powershell
 python -m guardrails fetch --bbox "269000,7040000,271000,7042000"
@@ -75,58 +75,58 @@ python -m guardrails inspect data/tile.laz
 python -m guardrails run --guardrails data/nvdb/guardrails.gpkg --tile data/tile.laz --config config.example.json --output outputs/custom
 ```
 
-Bruk miljøets Python. `fetch` bruker [NVDB API Les V4](https://nvdb-docs.atlas.vegvesen.no/nvdbapil/v4/Vegobjekter/), følger sidelenker og lagrer rårespons, egenskaper og vegreferanse. Både punktsky og linjer må oppgi EPSG:25833. Andre soner må reprojiseres først. NVDB-objekter kan strekke seg utenfor bbox; manglende laserobservasjon markeres som ukjent.
+Use the environment's Python. `fetch` uses [NVDB API Les V4](https://nvdb-docs.atlas.vegvesen.no/nvdbapil/v4/Vegobjekter/), follows pagination links and stores the raw response, properties and road reference. Both the point cloud and lines must declare EPSG:25833. Other zones must be reprojected first. NVDB objects may extend beyond the bbox; missing laser observations are marked as unknown.
 
-API-et krever `srid=UTM_33` og returnerer EPSG:5973 (UTM33 + NN2000); eksporten beholder den horisontale geometrien som EPSG:25833. LAS/LAZ med samme sammensatte koordinatsystem godtas også.
+The API requires `srid=UTM_33` and returns EPSG:5973 (UTM33 + NN2000); the export retains horizontal geometry as EPSG:25833. LAS/LAZ files with the same compound coordinate system are also accepted.
 
-## Metode
+## Method
 
-- Les LAS/LAZ i blokker. Filtrer først med bbox, deretter en vektorisert polygontest. Skriv utsnittet til disk uten å samle alle blokker i minnet.
-- Bruk en 15 m søkekorridor. Oppgavens 3 m buffer ville gjort kandidater mer enn 5 m fra registrerte linjer umulige å finne. Analysen finner fortsatt bare kandidater innenfor søkekorridoren.
-- Estimer høyde over nærmeste klasse-2-punkt. Avstander over 5 m gir ukjent høyde. Uten klasse 2 brukes 5-persentilen i 2 × 2 m celler, med lavere tillit.
-- Del hver linjedel i intervaller på høyst 1 m; tell punkter 0,3–1,5 m over bakken innenfor 1,5 m. Under fem punkter gir manglende støtte når andre gyldige laserpunkter finnes lokalt. Ingen observasjon gir `unknown`.
-- Slå sammen sammenhengende intervaller uten støtte, minst 5 m. Behold kurvene og skill separate linjedeler. Søk også etter DBSCAN-klynger mer enn 5 m fra linjene; bruk roterte hovedakser for lengde og bredde.
+- Read LAS/LAZ in chunks. Filter by bbox first, then apply a vectorised polygon test. Write the crop to disk without collecting all chunks in memory.
+- Use a 15 m search corridor. The assignment's 3 m buffer would make it impossible to find candidates more than 5 m from registered lines. The analysis still only finds candidates within the search corridor.
+- Estimate height above the nearest class-2 point. Distances over 5 m produce unknown height. Without class 2, use the fifth percentile in 2 × 2 m cells, with lower confidence.
+- Split each line part into intervals of at most 1 m; count points 0.3–1.5 m above ground within 1.5 m. Fewer than five points means unsupported when other valid laser points are present locally. No observation gives `unknown`.
+- Merge consecutive unsupported intervals of at least 5 m. Preserve curves and keep separate line parts apart. Also search for DBSCAN clusters more than 5 m from the lines; use rotated principal axes to measure length and width.
 
-## Utdata
+## Outputs
 
-| Fil | Innhold |
+| File | Contents |
 |---|---|
-| `flagged_gaps.gpkg` | Flaggede linjestrekninger, sortert etter lengde |
-| `unregistered_candidates.gpkg` | Lange, smale klynger utenfor registrerte linjer |
-| `support_per_object.csv` | Støttet, ustøttet og ukjent lengde per objekt og vegreferanse |
-| `samples.csv` | Punktantall og status for hvert intervall |
-| `corridor_cloud.npy` | Utsnitt, kolonner x, y, z, klasse |
-| `overview.png` | Oversiktskart uten bakgrunnsbilder |
-| `summary.json` | Parametre, datastier, tidspunkt og resultattall |
-| `review_template.csv` | De 20 lengste flaggene til manuell kontroll |
+| `flagged_gaps.gpkg` | Flagged line sections, sorted by length |
+| `unregistered_candidates.gpkg` | Long, narrow clusters away from registered lines |
+| `support_per_object.csv` | Supported, unsupported and unknown length per object and road reference |
+| `samples.csv` | Point count and status for each interval |
+| `corridor_cloud.npy` | Cropped points, columns x, y, z, class |
+| `overview.png` | Overview map without background imagery |
+| `summary.json` | Parameters, data paths, timestamp and result counts |
+| `review_template.csv` | The 20 longest flags for manual review |
 
-`from_m` og `to_m` er avstand langs den enkelte geometridelen, **ikke** offisiell vegmeter. Vegreferansen beholdes som kildeopplysning. Overlappende NVDB-objekter kan gi dobbel lengde i summer.
+`from_m` and `to_m` are distances along each geometry part, **not** official road chainage. The road reference is retained as source information. Overlapping NVDB objects may double-count length in totals.
 
-## Kalibrering og feilkilder
+## Calibration and sources of error
 
-Åpne GeoPackage-filene i QGIS med datert flyfoto fra Norge i bilder. Kopier `review_template.csv` til `review.csv` før utfylling; malen overskrives ved ny kjøring. Fyll `verdict` med `confirmed`, `false_positive` eller `uncertain`, og noter bildekilde, dato og forklaring. Kjør `python -m guardrails review outputs/real/review.csv` for opptelling. Rapporter N bekreftede avvik av K vurderte, med usikre og falske positive separat.
+Open the GeoPackage files in QGIS with dated aerial imagery from Norge i bilder. Copy `review_template.csv` to `review.csv` before filling it in; the template is overwritten on reruns. Set `verdict` to `confirmed`, `false_positive` or `uncertain`, and record the image source, date and explanation. Run `python -m guardrails review outputs/real/review.csv` to count the decisions. Report N confirmed discrepancies out of K reviewed, listing uncertain findings and false positives separately.
 
-Bildegjennomgang og oppfølging er utført for Trondheim-forsøket; tersklene er ikke kalibrert mot uavhengig fasit. Skygge, glissen punktsky, vegetasjon, terrenghelning, feilklassifisering, sideforskyvning og ulike opptaksår påvirker resultatet. Nærmeste bakkepunkt er en tilnærming, ikke en eksakt terrengmodell. Lokal observasjon garanterer ikke at laserstrålen traff rekkverket. Hekker, gjerder og biler kan gi støtte eller feil kandidater. Bruk `--reference-guardrails` med alle nærliggende registrerte linjer når studieutvalget er begrenset til én veg. Test flere parametre med separate `--output`-mapper, og behold et eget kontrollutvalg ved evaluering.
+Imagery review and follow-up have been completed for the Trondheim study; thresholds have not been calibrated against independent ground truth. Shadows, sparse point clouds, vegetation, terrain slope, misclassification, lateral offsets and different acquisition years affect the results. The nearest ground point is an approximation, not an exact terrain model. Local observations do not guarantee that the laser beam hit the guardrail. Hedges, fences and cars may provide support or produce false candidates. Use `--reference-guardrails` with all nearby registered lines when the study subset is limited to one road. Test multiple parameter settings with separate `--output` directories, and retain a separate control sample for evaluation.
 
-## Hva ligger i GitHub-prosjektet?
+## What is included in the GitHub project?
 
-- `guardrails/`: innlesing, analyse, kommandolinje og syntetisk demo.
-- `scripts/`: nedlasting, kjøring, diagnostikk og dokumentert oppfølging av Trondheim-forsøket.
-- `tests/`: regresjonstester for datapipeline og datainnhenting.
-- `reports/trondheim-2022/`: rapporter, vurderinger, kildemanifest, kart og utvalgt evidens som kan deles.
+- `guardrails/`: input handling, analysis, command line and synthetic demo.
+- `scripts/`: download, execution, diagnostics and documented follow-up for the Trondheim study.
+- `tests/`: regression tests for the data pipeline and data retrieval.
+- `reports/trondheim-2022/`: reports, assessments, evidence manifest, maps and selected shareable evidence.
 
-Rapportmappen beholdes slik at resultatene kan leses uten å laste ned punktskyen. Rådata i `data/`, kjøringsresultater og lokale flyfoto i `outputs/`, Python-miljøer, midlertidige filer, lokale hemmeligheter og personlige søknadsdokumenter holdes utenfor Git. Ignoreringsreglene ligger i en lokal `.gitignore` som ikke følger med ved kloning; opprett egne lokale regler før du legger til genererte filer. Ignoreringsregler fjerner ikke filer som allerede er sporet av Git.
+The report directory is included so results can be read without downloading the point cloud. Raw data in `data/`, run outputs and local aerial imagery in `outputs/`, Python environments, temporary files, local secrets and personal application documents are excluded from Git. Ignore rules are stored in a local `.gitignore` that is not included when cloning; create your own local rules before adding generated files. Ignore rules do not remove files already tracked by Git.
 
-## Hva måtte endres i full skala?
+## What would change at full scale?
 
-La vegnettet styre flisleggingen og bruk overlapp mellom fliser. Bruk lineær vegreferanse som koblingsnøkkel og en kvalitetssikret DTM som bakkegrunnlag. PDAL er et naturlig alternativ for produksjonsflyt. Selve lesingen og utsnittet er blokkbasert; KD-trær og analyse bruker minne proporsjonalt med utsnittet. Kjøringen stopper ved fem millioner utsnittspunkter eller 200 000 kandidatpunkter for å begrense risikoen for minneproblemer, særlig i DBSCAN. Dette er ikke en landsdekkende produksjonsløsning.
+Let the road network drive tiling and use overlap between tiles. Use linear road references as the join key and a quality-assured DTM as the ground reference. PDAL is a natural option for a production workflow. Reading and cropping are chunked; KD-trees and analysis use memory proportional to the crop. Execution stops at five million cropped points or 200,000 candidate points to limit the risk of memory issues, especially in DBSCAN. This is not a nationwide production solution.
 
-## Data og lisenser
+## Data and licences
 
-- NVDB: «Inneholder data under norsk lisens for offentlige data (NLOD) tilgjengeliggjort av Statens vegvesen.» Se [NVDBs dokumentasjon](https://nvdb.atlas.vegvesen.no/docs/produkter/nvdbapil/v4/introduksjon/Oversikt/) og [vilkår for uttrekk](https://www.vegvesen.no/fag/teknologi/nasjonal-vegdatabank/hente-ut-og-se-pa-data-i-nasjonal-vegdatabank/).
-- Kartverkets gratisprodukter: [CC BY 4.0 og vilkår](https://www.kartverket.no/api-og-data/vilkar-for-bruk), kilde © Kartverket. Kontroller særvilkår for det konkrete laserprosjektet og oppgi øvrige rettighetshavere i produktmetadata. Ingen virkelig punktsky distribueres her.
-- Vegbilder: Statens vegvesen, [NLOD og datasettbeskrivelse](https://dataut.vegvesen.no/nb/dataset/vegbilder). Rapporten inkluderer ett anonymisert vegbilde med kilde og dato.
-- Flyfoto: Norge i bilder og rettighetshavere angitt i kildemanifestet. Bildene brukes til lokal kontroll og inngår ikke i rapportmappen som deles.
-- Demoen er generert lokalt og inneholder ingen NVDB- eller Kartverket-data. Kildekode: MIT, se `LICENSE`.
+- NVDB: Contains data made available by Statens vegvesen under the Norwegian Licence for Open Government Data (NLOD). See the [NVDB documentation](https://nvdb.atlas.vegvesen.no/docs/produkter/nvdbapil/v4/introduksjon/Oversikt/) and [data extraction terms](https://www.vegvesen.no/fag/teknologi/nasjonal-vegdatabank/hente-ut-og-se-pa-data-i-nasjonal-vegdatabank/).
+- Kartverket's free products: [CC BY 4.0 and terms](https://www.kartverket.no/api-og-data/vilkar-for-bruk), source © Kartverket. Check specific terms for the laser project and credit other rights holders listed in the product metadata. No real point cloud is distributed here.
+- Road photographs: Statens vegvesen, [NLOD and dataset description](https://dataut.vegvesen.no/nb/dataset/vegbilder). The report includes one anonymised road photograph with its source and date.
+- Aerial imagery: Norge i bilder and the rights holders listed in the evidence manifest. Images are used for local review and are not included in the shared report directory.
+- The demo is generated locally and contains no NVDB or Kartverket data. Source code: MIT, see `LICENSE`.
 
-Oppgavebeskrivelsen er bevart i `guardrails-vs-laser-data.md`.
+The project brief is included in `guardrails-vs-laser-data.md`.
